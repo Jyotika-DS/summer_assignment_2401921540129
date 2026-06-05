@@ -1,0 +1,65 @@
+Day 5: String Basics 
+1. Valid Palindrome
+
+   class Solution {
+public:
+    bool isPalindrome(string s) {
+       int i=0;
+       int j=s.size()-1;
+        while (i < j){
+        while (i < j && !isalnum(s[i]))
+        {  
+            i++;
+        }
+        while (i < j && !isalnum(s[j]))
+        {
+            j--;
+        }
+        if(tolower(s[i])!=tolower(s[j]))
+        {
+            return false;
+        }
+        i++;
+        j--;
+        }
+
+        return true;
+    }
+};
+
+2. Reverse String
+
+   
+class Solution {
+public:
+    void reverseString(vector<char>& s) {
+       reverse(s.begin(),s.end());
+    }
+  
+};
+   
+
+3. Longest Common Prefix
+
+class Solution {
+public:
+    string longestCommonPrefix(vector<string>& strs) {
+        string pre="";
+        for(int i=0;i<strs[0].size();i++)
+        {
+            char c=strs[0][i];
+        
+            for(int j=1;j<strs.size();j++)
+            {
+                if(i>=strs[j].size()|| strs[j][i]!=c)
+                {
+                    return pre;
+                }
+            }
+        
+         pre=pre+c;
+        }
+        return pre;
+    }
+};
+   
