@@ -1,0 +1,75 @@
+Day 2: Sliding Window on Strings 
+1. Longest Substring Without Repeating Characters 
+
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        int maxlen=0;
+       
+       for(int i=0;i<s.size();i++)
+       {
+         vector<int>freq(256,0);
+        
+        for(int j=i;j<s.size();j++)
+        {
+            if(freq[s[j]]==1)
+            {
+                break;
+            }
+            freq[s[j]]++;
+            maxlen=max(maxlen,j-i+1);
+        }
+       }
+       return maxlen;
+       
+    }
+};
+
+2. Permutation in String 
+
+class Solution {
+public:
+    bool isFreqsame(vector<int>&freq1,vector<int>&freq2)
+    {
+        for(int i=0;i<26;i++)
+        {
+            if(freq1[i]!=freq2[i])
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    bool checkInclusion(string s1, string s2) {
+      vector<int>freq(26,0) ;
+      for(int i=0;i<s1.length();i++)
+      {
+        freq[s1[i]-'a']++;
+      }
+      int winsize=s1.length();
+       for(int i=0;i<s2.length();i++)
+      {
+        int winidx=0;
+        int idx=i;
+         vector<int>winfreq(26,0) ;
+        while(winidx < winsize && idx<s2.length())
+        {
+           winfreq[s2[idx]-'a']++; 
+           winidx++;
+           idx++;
+           if(isFreqsame(freq,winfreq))
+           {
+            return true;
+           }
+        }
+      }
+      return false;
+      
+    }
+
+};
+
+
+
+
